@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/public/main.css">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+
+    <div class="container input-group mb-2">
+      <input class="form-control" id="searchInput">
+      <button class="input-group-append btn btn-danger" id="search">검색</button>
+    </div>
+
+  <%- include('nav.html') %>
+  
+  <div class="container">
+    <h4 class="ml-2 my-3"> say hello to halland! </h4>
+    <img src="../public/img/홀란1.jpg" alt="" style="height:200px;">
+    <ul class="list-group">
+      <% for (var i = 0; i < posts.length ; i++){ %>
+        <li class="list-group-item">
+          <p>글번호 : <%= posts[i]._id %> </p>
+          <h4>제목 : <%= posts[i].title %></h4>
+          <p>할일 마감날짜 : <%= posts[i].date %> </p>
+          <button class="btn btn-danger delete" data-id="<%= posts[i]._id %>">delete</button>
+          <button class="btn btn-success chat" data-id="<%= posts[i].writer %>">채팅</button>
+        </li>
+        <% } %>
+      </ul>
+  </div>
+      
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+  <script>
+
+    $('.delete').click(function(e){
+      var 글번호 = e.target.dataset.id;
+      var 지금누른거 = $(this);
+      $.ajax({
+      method : 'delete',
+      url : '/delete',
+      data : {_id : 글번호},
+      }).done(function(result){
+        console.log('complete');
+        지금누른거.parent('li').fadeOut();
+
+      }).fail(function(a,b,c){
+        console.log(a,b,c);
+      });
+    })
+
+
+      $('#search').click(function(){
+        var inputValue = $('#searchInput').val()
+        window.location.replace('/search?value='+ inputValue )
+      })
+
+    $('.chat').click(function(e){
+      var _id = e.target.dataset.id;
+      $.post('/chatroom',{
+        당한사람id:_id
+      }).then(()=>{
+        console.log('chat complete')
+      })
+    });
+
+
+
+
+  </script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>
