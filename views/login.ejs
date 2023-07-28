@@ -10,23 +10,25 @@
 <body>
   <%- include('nav.html') %>
   
-  <h4 class="container mt-4"><strong>글 작성페이지</strong></h4>
+  <h4 class="container mt-4"><strong>로그인</strong></h4>
 
-  <div class="container mt-3">
+  <div class="container mt-3 shadow-lg p-3 mb-5 bg-white rounded">
     <form action="/login" method="POST">
-      <div class="form-group">
+      <div class="form-group"  style="width: 200px;">
         <label>아이디</label>
-        <input type="text" class="form-control" name="id">
+        <input type="text" class="form-control" name="id" style="width: 100px;">
       </div>
       <div class="form-group"> 
         <label>비밀번호</label>
-        <input type="password" class="form-control" name="pw">
+        <input type="password" class="form-control" name="pw" style="width: 100px;">
       </div>
       <button type="submit" class="btn btn-danger">로그인</button>
     </form>
   </div>
 
-  <div class="container mt-3">
+  <h4 class="container mt-4"><strong>회원가입</strong></h4>
+
+  <div class="container mt-3 shadow-lg p-3 mb-5 bg-white rounded">
     <form action="/register" method="POST">
       <div class="form-group">
         <label>아이디</label>

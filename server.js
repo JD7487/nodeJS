@@ -112,11 +112,11 @@ passport.use(new LocalStrategy({
   db.collection('login').findOne({ id: 입력한아이디 }, function (error, result) {
     if (error) return done(error)
     
-    if (!result) return done(null, false, { message: '존재하지않는 아이디요' })
+    if (!result) return done(null, false, { message: '존재하지않는 아이디' })
     if (입력한비번 == result.pw) {
       return done(null, result)
     } else {
-      return done(null, false, { message: '비번틀렸어요' })
+      return done(null, false, { message: '비밀번호가 틀렸습니다.' })
     }
   })
 }));
@@ -124,8 +124,8 @@ passport.use(new LocalStrategy({
 passport.serializeUser(function (user, done) {
   done(null, user.id)
 });
-passport.deserializeUser(function (아이디, done) {
-  db.collection('login').findOne({id : 아이디}, function (error, result){
+passport.deserializeUser(function (ID, done) {
+  db.collection('login').findOne({id : ID}, function (error, result){
     done(null, result)
   })
 });

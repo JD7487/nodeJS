@@ -9,20 +9,20 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="/public/main.css">
 
-    <title>Hello, world!</title>
+    <title>Hello, haaland!</title>
   </head>
   <body>
 
-    <div class="container input-group mb-2">
-      <input class="form-control" id="searchInput">
-      <button class="input-group-append btn btn-danger" id="search">검색</button>
-    </div>
 
   <%- include('nav.html') %>
   
   <div class="container">
     <h4 class="ml-2 my-3"> say hello to halland! </h4>
     <img src="../public/img/홀란1.jpg" alt="" style="height:200px;">
+    <div class="container input-group mb-2">
+      <input class="form-control" id="searchInput">
+      <button class="input-group-append btn btn-danger" id="search">검색</button>
+    </div>
     <ul class="list-group">
       <% for (var i = 0; i < posts.length ; i++){ %>
         <li class="list-group-item">
